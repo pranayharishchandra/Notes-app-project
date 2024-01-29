@@ -2,4 +2,6 @@ setTasks(prevTasks => [...prevTasks, task]);
 
 const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
 
+<div className={"h-screen " + (dark && 'bg-blue-950')}> // parenthesis
+
 
