@@ -21,7 +21,7 @@ const TaskCard = (props) => {
 
       <div className='flex'>
         <button
-          onClick={() => editTextHandler(id)}
+          onClick={() => editTextHandler(id, text, priority)}
           className='bg-green-300 m-0.5 p-1 rounded-md flex justify-center items-center  w-10'
         >
           <FontAwesomeIcon icon={faPen} />

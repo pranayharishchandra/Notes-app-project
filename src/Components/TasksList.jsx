@@ -9,6 +9,7 @@ const Tasks = (props) => {
   const [tasks, setTasks] = useState(tasks_)
   const [editText, setEditText] = useState('')
   const [idEdit, setIdEdit] = useState('')
+  const [editPriority, setEditPriority] = useState(1)
 
   useEffect(() => {
     // Assuming tasks is your array of objects
@@ -17,9 +18,11 @@ const Tasks = (props) => {
   },[tasks])
 
 
-  function editTextHandler(id) {
+  function editTextHandler(id, text, priority) {
     console.log(id)
     setIdEdit(id)
+    setEditText(text)
+    setEditPriority(priority)
     
   }
 
@@ -40,12 +43,12 @@ const Tasks = (props) => {
   return (
     <div className="flex-row">
 
-      <Form addHandler={addHandler} dark={dark} idEdit={idEdit}/>
+      <Form addHandler={addHandler} dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/>
 
       <div className="flex justify-center item-center m-4">
       <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
         {tasks.map(task => (
-          <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} />
+          <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
         ))}
       </div>
     </div>

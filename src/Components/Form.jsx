@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react'
 
 const Form = (props) => {
 
-  const { addHandler, dark, idEdit } = props;
+  const { addHandler, dark, idEdit, editText, editPriority } = props;
 
-  console.log('idEdit ',idEdit ? idEdit : '')
-
+  const [id, setId] = useState(1)
   const [text, setText] = useState('');
+  const [priority, setPriority] = useState(1);
 
   useEffect(() => {
-    setText(idEdit)
-  },[idEdit])
+    // setText(idEdit)
+    setText(editText)
+    setPriority(editPriority)
+  },[idEdit, editText, editPriority])
 
 
-  const [priority, setPriority] = useState(1)
-
-  console.log('text : ', text)
+  console.log('text : ', idEdit, editText, editPriority)
 
 
   function textChange(e) {
@@ -69,9 +69,9 @@ const Form = (props) => {
             onChange={textChange}
             className='my-auto mx-4 w-auto rounded-md p-1'
           />
-          {text.length !== 0 && <button
+          {text?.length !== 0 && <button
             type='submit'
-            className={'bg-pink-600 px-2 rounded-lg h-12 w-auto ' + (text.length === 0 && 'hidden')}
+            className={'bg-pink-600 px-2 rounded-lg h-12 w-auto ' + (text?.length === 0 && 'hidden')}
           > Add
           </button>}
         </div>
