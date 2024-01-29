@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TaskCard from "./TaskCard";
 import tasks_ from "../data/Tasks";
+import Form from "./Form";
 
 const Tasks = () => {
 
@@ -16,7 +17,6 @@ const Tasks = () => {
   function deleteHandler(id) {
     const new_tasks = tasks.filter(task => id !== task.id)
     setTasks(new_tasks)
-
   }
 
   if (tasks === null || tasks.length === 0)
@@ -24,15 +24,7 @@ const Tasks = () => {
 
   return (
     <div className="container">
-
-
-      <input
-        type="text"
-        placeholder="Search..."
-        value='input'
-        onChange={editTextHandler}
-      />
-
+      <Form />
 
       <div className="flex justify-center item-center m-4">
       <div className="flex-row justify-center items-center w-[80vw] bg-red-600">
