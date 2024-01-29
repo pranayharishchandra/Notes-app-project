@@ -36,7 +36,7 @@ const Tasks = (props) => {
     // update
     else {
       const temp = tasks.map( task => {
-        if (task.id === newTask.id) return task
+        if (task.id === newTask.id) return newTask
         return task
       } )
 
