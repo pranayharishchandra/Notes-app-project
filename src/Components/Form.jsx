@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
-const Form = () => {
+const Form = (props) => {
+
+  const { addHandler } = props;
 
   const [text, setText] = useState('')
   const [priority, setPriority] = useState(1)
@@ -19,11 +21,18 @@ const Form = () => {
   function submitHandler(e) {
     e.preventDefault()
     
+    const newTask = {
+      id: Math.random() * 1000000000000000 + 4,
+      text,
+      priority
+    }
+
+    addHandler(newTask)
 
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className='m-4'>
       <h1 className='text-xl'>Add Task</h1>
       Priority: <input
         type="number"
@@ -39,7 +48,7 @@ const Form = () => {
         onChange={textChange}
         className='m-4'
       />
-      {text.length  && <button
+      {text.length !== 0  &&  <button
         type='submit'
         className='bg-pink-600 p-2 rounded-lg'
       > Add 

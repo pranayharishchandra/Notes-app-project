@@ -14,6 +14,10 @@ const Tasks = () => {
 
   }
 
+  function addHandler(task) {
+    console.log(task)
+  }
+
   function deleteHandler(id) {
     const new_tasks = tasks.filter(task => id !== task.id)
     setTasks(new_tasks)
@@ -24,7 +28,7 @@ const Tasks = () => {
 
   return (
     <div className="container">
-      <Form />
+      <Form addHandler={addHandler} />
 
       <div className="flex justify-center item-center m-4">
       <div className="flex-row justify-center items-center w-[80vw] bg-red-600">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -13,13 +13,9 @@ const TaskCard = (props) => {
       </div>
       <div className='h-10 mx-auto my-1 flex'>
 
-
-
         <div className='bg-pink-300 m-1 px-10 rounded-md flex justify-center items-center'>
           {text}
         </div>
-
-
 
       </div>
 
@@ -30,6 +26,7 @@ const TaskCard = (props) => {
         >
           <FontAwesomeIcon icon={faPen} />
         </button>
+
         <button
           onClick={() => deleteHandler(id)}
           className='bg-red-500 w-10 m-0.5 p-1 rounded-md flex justify-center items-center'
@@ -38,7 +35,6 @@ const TaskCard = (props) => {
         </button>
 
       </div>
-
 
     </div>
   );
