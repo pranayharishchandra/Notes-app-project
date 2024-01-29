@@ -26,10 +26,27 @@ const Tasks = (props) => {
     
   }
 
-  function addHandler(task) {
-    console.log('addHandler: ',task)
-    // console.log(tasks)
-    setTasks(prevTasks => [...prevTasks, task]);
+  function addHandler(newTask) {
+    // task is the object with id, priority, text
+    console.log('addHandler: ',newTask)
+    // adding new element
+    if (idEdit === '' || idEdit === 0 || !idEdit) {
+      setTasks(prevTasks => [...prevTasks, newTask]);
+    }
+    // update
+    else {
+      const temp = tasks.map( task => {
+        if (task.id === newTask.id) return task
+        return task
+      } )
+
+      setTasks(temp)
+
+      setIdEdit('')
+      setEditText('')
+      setEditPriority(1)
+    }
+
   }
 
   function deleteHandler(id) {
