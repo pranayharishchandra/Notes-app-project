@@ -1,0 +1,5 @@
+setTasks(prevTasks => [...prevTasks, task]);
+
+const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
+
+

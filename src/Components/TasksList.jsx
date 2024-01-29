@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
 import tasks_ from "../data/Tasks";
 import Form from "./Form";
@@ -8,6 +8,13 @@ const Tasks = () => {
 
   const [tasks, setTasks] = useState(tasks_)
   const [editText, setEditText] = useState('')
+  const [isedit, setIsEdit] = useState(false)
+
+  useEffect(() => {
+    // Assuming tasks is your array of objects
+    const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
+    setTasks(sortedTasks)
+  },[tasks])
 
 
   function editTextHandler(id) {
@@ -15,7 +22,9 @@ const Tasks = () => {
   }
 
   function addHandler(task) {
-    console.log(task)
+    console.log('addHandler: ',task)
+    // console.log(tasks)
+    setTasks(prevTasks => [...prevTasks, task]);
   }
 
   function deleteHandler(id) {
