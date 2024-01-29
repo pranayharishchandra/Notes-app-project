@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Form = (props) => {
 
-  const { addHandler, dark } = props;
+  const { addHandler, dark, idEdit } = props;
 
-  const [text, setText] = useState('')
+  console.log('idEdit ',idEdit ? idEdit : '')
+
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    setText(idEdit)
+  },[idEdit])
+
+
   const [priority, setPriority] = useState(1)
+
+  console.log('text : ', text)
+
 
   function textChange(e) {
     console.log(e.target.value)
@@ -21,8 +32,10 @@ const Form = (props) => {
   function submitHandler(e) {
     e.preventDefault()
 
+    const id = idEdit ? idEdit : Math.random() * 1000000000000000 + 4
+
     const newTask = {
-      id: Math.random() * 1000000000000000 + 4,
+      id,
       text,
       priority
     }
@@ -58,7 +71,7 @@ const Form = (props) => {
           />
           {text.length !== 0 && <button
             type='submit'
-            className={'bg-pink-600 px-2 rounded-lg h-12 focus:text-white ' + (text.length === 0 && ' hidden')}
+            className={'bg-pink-600 px-2 rounded-lg h-12 w-auto ' + (text.length === 0 && 'hidden')}
           > Add
           </button>}
         </div>

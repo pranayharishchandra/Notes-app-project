@@ -8,7 +8,7 @@ const Tasks = (props) => {
   const {dark} = props
   const [tasks, setTasks] = useState(tasks_)
   const [editText, setEditText] = useState('')
-  const [isedit, setIsEdit] = useState(false)
+  const [idEdit, setIdEdit] = useState('')
 
   useEffect(() => {
     // Assuming tasks is your array of objects
@@ -18,7 +18,9 @@ const Tasks = (props) => {
 
 
   function editTextHandler(id) {
-
+    console.log(id)
+    setIdEdit(id)
+    
   }
 
   function addHandler(task) {
@@ -38,7 +40,7 @@ const Tasks = (props) => {
   return (
     <div className="flex-row">
 
-      <Form addHandler={addHandler} dark={dark}/>
+      <Form addHandler={addHandler} dark={dark} idEdit={idEdit}/>
 
       <div className="flex justify-center item-center m-4">
       <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
