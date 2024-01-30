@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TaskCard from "./TaskCard";
 import tasks_ from "../data/Tasks";
 import Form from "./Form";
+import TaskContext from "../context/ListContext";
+
 
 const Tasks = (props) => {
 
@@ -56,9 +58,14 @@ const Tasks = (props) => {
     const new_tasks = tasks.filter(task => id !== task.id)
     setTasks(new_tasks)
   }
+  
+  const { test } = useContext(TaskContext)
+
+  console.log('test : ',test)
 
   if (tasks === null || tasks.length === 0)
     return <h2 className="text-center m-5 text-2xl">No Tasks To Do</h2>
+
 
   return (
     <div className="flex-row">

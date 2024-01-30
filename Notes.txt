@@ -1,12 +1,13 @@
-setTasks(prevTasks => [...prevTasks, task]);
 =================================================================================
 const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
+
 =================================================================================
 <div className={"h-screen " + (dark && 'bg-blue-950')}> // parenthesis
 
 =================================================================================
 // not working
 const [text, setText] = useState(idEdit ? idEdit : '');
+
 ---------------------------------------------------------------------------------
 // working
   const [text, setText] = useState('');
@@ -14,6 +15,7 @@ const [text, setText] = useState(idEdit ? idEdit : '');
   useEffect(() => {
     setText(idEdit)
   },[idEdit])
+
 =================================================================================
 // not sorting in decending order in 1st render
   const [tasks, setTasks] = useState(sortedTasks)
@@ -34,5 +36,15 @@ const [text, setText] = useState(idEdit ? idEdit : '');
   },[tasks])
 
 =================================================================================
+// i guess when you have stored all the items on your machine, and not fetching
+// then useEffect is not working as expected
+// and for me i just 'sortedTasks' before 'setTasks'
+
+=================================================================================
+
+
+
+
+
 
 
