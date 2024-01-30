@@ -6,13 +6,14 @@ import Form from "./Form";
 const Tasks = (props) => {
 
   const {dark} = props
-  const [tasks, setTasks] = useState(tasks_)
+  const sortedTasks = tasks_.sort((a, b) => b.priority - a.priority)
+  const [tasks, setTasks] = useState(sortedTasks)
+
   const [editText, setEditText] = useState('')
   const [idEdit, setIdEdit] = useState('')
   const [editPriority, setEditPriority] = useState(1)
 
   useEffect(() => {
-    // Assuming tasks is your array of objects
     const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
     setTasks(sortedTasks)
   },[tasks])
@@ -23,7 +24,6 @@ const Tasks = (props) => {
     setIdEdit(id)
     setEditText(text)
     setEditPriority(priority)
-    
   }
 
   function addHandler(newTask) {

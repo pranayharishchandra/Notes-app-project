@@ -4,18 +4,16 @@ const Form = (props) => {
 
   const { addHandler, dark, idEdit, editText, editPriority } = props;
 
-  const [id, setId] = useState(1)
   const [text, setText] = useState('');
   const [priority, setPriority] = useState(1);
 
   useEffect(() => {
-    // setText(idEdit)
     setText(editText)
     setPriority(editPriority)
   },[idEdit, editText, editPriority])
 
 
-  console.log('text : ', idEdit, editText, editPriority)
+  console.log('form : ', idEdit, editText, editPriority)
 
 
   function textChange(e) {
@@ -47,8 +45,8 @@ const Form = (props) => {
 
   return (
     <form onSubmit={submitHandler} className='m-4 '>
-      <h1 className={'text-xl ' + (dark && 'text-white')}>Add Task</h1>
-      <div className='flex justify-evenly align-baseline'>
+      <h1 className={'text-xl ' + (dark && 'text-white flex-wrap')}>Add Task</h1>
+      <div className='flex justify-evenly align-baseline flex-wrap'>
 
         <div className='flex align-baseline'>
           <h2 className={'m-2 ' + (dark && 'text-white')}>Priority:</h2>
