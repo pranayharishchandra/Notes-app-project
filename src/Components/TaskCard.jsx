@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import TaskContext from '../context/ListContext';
 
 const TaskCard = (props) => {
-  const { id, text, priority, editTextHandler, deleteHandler } = props;
+  const { id, text, priority, editTextHandler, 
+    // deleteHandler 
+  } = props;
+
+  const {deleteHandler} = useContext(TaskContext)
 
   return (
     <div className='flex justify-evenly items-center p-3 m-3 bg-blue-400 shadow-md shadow-pink-500 border-b-4 rounded-md hover:scale-110 duration-100'>

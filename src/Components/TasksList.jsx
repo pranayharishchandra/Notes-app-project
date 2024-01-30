@@ -54,10 +54,10 @@ const Tasks = (props) => {
 
   }
 
-  function deleteHandler(id) {
-    const new_tasks = tasks.filter(task => id !== task.id)
-    setTasks(new_tasks)
-  }
+  // function deleteHandler(id) {
+  //   const new_tasks = tasks.filter(task => id !== task.id)
+  //   setTasks(new_tasks)
+  // }
   
   const { test } = useContext(TaskContext)
 
@@ -75,7 +75,8 @@ const Tasks = (props) => {
       <div className="flex justify-center item-center m-4">
       <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
         {tasks.map(task => (
-          <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
+          // <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
+          <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} editPriority={editPriority} editText={editText}/>
         ))}
       </div>
     </div>
