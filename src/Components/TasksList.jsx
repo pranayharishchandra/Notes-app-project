@@ -31,7 +31,9 @@ const Tasks = (props) => {
     console.log('addHandler: ',newTask)
     // adding new element
     if (idEdit === '' || idEdit === 0 || !idEdit) {
-      setTasks(prevTasks => [...prevTasks, newTask]);
+      const temp = [...tasks, newTask]
+      const sortedTasks = temp.sort((a, b) => b.priority - a.priority);
+      setTasks(sortedTasks)
     }
     // update
     else {
@@ -40,7 +42,8 @@ const Tasks = (props) => {
         return task
       } )
 
-      setTasks(temp)
+      const sortedTasks = temp.sort((a, b) => b.priority - a.priority);
+      setTasks(sortedTasks)
 
       setIdEdit('')
       setEditText('')

@@ -7,7 +7,7 @@ const TaskCard = (props) => {
   const { id, text, priority, editTextHandler, deleteHandler } = props;
 
   return (
-    <div className='flex justify-evenly items-center p-3 m-3 bg-blue-400 shadow-md shadow-pink-500 border-b-4 rounded-md'>
+    <div className='flex justify-evenly items-center p-3 m-3 bg-blue-400 shadow-md shadow-pink-500 border-b-4 rounded-md hover:scale-110 duration-100'>
       <div className='bg-red-500 m-1 p-1 h-10 w-10 rounded-md flex justify-center items-center'>
         <h2 className='text-center text-white'>{priority}</h2>
       </div>
