@@ -8,8 +8,8 @@ import TaskContext from "../context/ListContext";
 const Tasks = (props) => {
 
   const {dark} = props
-  const sortedTasks = tasks_.sort((a, b) => b.priority - a.priority)
-  const [tasks, setTasks] = useState(sortedTasks)
+
+  const { tasks, setTasks } = useContext(TaskContext)
 
   const [editText, setEditText] = useState('')
   const [idEdit, setIdEdit] = useState('')
@@ -64,7 +64,7 @@ const Tasks = (props) => {
   console.log('test : ',test)
 
   if (tasks === null || tasks.length === 0)
-    return <h2 className="text-center m-5 text-2xl">No Tasks To Do</h2>
+    return <h2 className = "text-center m-5 text-2xl">No Tasks To Do</h2>
 
 
   return (

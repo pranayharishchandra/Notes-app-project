@@ -41,6 +41,8 @@ const [text, setText] = useState(idEdit ? idEdit : '');
 // and for me i just 'sortedTasks' before 'setTasks'
 
 =================================================================================
+TaskProvider only to enclose the App.js child compnents
+TaskContext to create and export default and useContext(TaskContext)
 
 
 
