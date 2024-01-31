@@ -13,6 +13,12 @@ export const TaskProvider = ({children}) => {
         setTasks(JSON.parse(storedTasks));
       }
     }
+
+    const [dark, setDark] = useState(true)
+    
+    function darkMode() {
+      setDark((prev) => !prev)
+    }
   
   
     // useEffect to fetch tasks when the component mounts
@@ -82,6 +88,8 @@ export const TaskProvider = ({children}) => {
       editText, setEditText,
       editPriority, setEditPriority,
       filterText, setFilterText,
+      dark, setDark,
+      darkMode
     }}>
       {children}
     </TaskContext.Provider>

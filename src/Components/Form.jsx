@@ -3,15 +3,16 @@ import TaskContext from '../context/ListContext';
 
 const Form = (props) => {
 
-  const { 
-    // addHandler, 
-     dark,
-    //  idEdit,
-    //  editText, 
-    //  editPriority 
-    } = props;
+  // const { 
+  //   // addHandler, 
+  //   //  dark,
+  //   //  idEdit,
+  //   //  editText, 
+  //   //  editPriority 
+  //   } = props;
 
   const { 
+    dark,
     addHandler,
     idEdit,
     editPriority, 

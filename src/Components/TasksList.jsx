@@ -8,9 +8,10 @@ import Form from "./Form";
 import TaskContext from "../context/ListContext";
 
 
-const Tasks = (props) => {
+// const Tasks = (props) => {
+const Tasks = () => {
 
-  const { dark } = props
+  // const { dark } = props
 
   const { tasks, filterText } = useContext(TaskContext)
 
@@ -75,20 +76,16 @@ const Tasks = (props) => {
     <div className="flex-row">
 
       {/* <Form addHandler={addHandler} dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/> */}
-      {/* <Form dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/> */}
-      <Form dark={dark} />
+      <Form />
 
 
       {(tasks?.length === 0) ?
         <h2 className="text-center m-5 text-2xl text-pink-400">No Tasks To Do</h2> :
 
-
-
           <div className="flex justify-center item-center m-4">
             <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
               {
                 // const filteredArray = array.filter(element => element.includes(searchString));
-
 
                 tasks.map(task => (
                   // <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
