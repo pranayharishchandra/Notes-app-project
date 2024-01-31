@@ -6,12 +6,26 @@ const TaskContext = createContext()
 // you may make a seperate jsx component of TaskProvider function
 export const TaskProvider = ({children}) => {
 
-  const sortedTasks = tasks_.sort((a, b) => b.priority - a.priority)
-  const [tasks, setTasks] = useState(sortedTasks)
+    // Function to fetch tasks from local storage
+    function fetchTasks() {
+      const storedTasks = localStorage.getItem('tasks');
+      if (storedTasks) {
+        setTasks(JSON.parse(storedTasks));
+      }
+    }
+  
+  
+    // useEffect to fetch tasks when the component mounts
+    useEffect(() => {
+      fetchTasks();
+    }, []);
+
+  const [tasks, setTasks] = useState(tasks_)
 
   function deleteHandler(id) {
-    const new_tasks = tasks.filter(task => id !== task.id)
-    setTasks(new_tasks) 
+    const newTasks = tasks.filter(task => id !== task.id);
+    setTasks(newTasks);
+    localStorage.setItem('tasks', JSON.stringify(newTasks)); 
   }
 
   const [editText, setEditText] = useState('')
@@ -26,6 +40,7 @@ export const TaskProvider = ({children}) => {
       const temp = [...tasks, newTask]
       const sortedTasks = temp.sort((a, b) => b.priority - a.priority);
       setTasks(sortedTasks)
+      localStorage.setItem('tasks', JSON.stringify(sortedTasks));
     }
     // update
     else {
@@ -40,9 +55,10 @@ export const TaskProvider = ({children}) => {
       setIdEdit('')
       setEditText('')
       setEditPriority(1)
-    }
-
+      localStorage.setItem('tasks', JSON.stringify(sortedTasks));
+    } 
   }
+
 
   function editTextHandler(id, text, priority) {
     setIdEdit(id)
@@ -51,10 +67,9 @@ export const TaskProvider = ({children}) => {
     console.log('editTextHandler-id, IdEdit: ', idEdit, text, priority)
   }
 
-  useEffect(() => {
-    const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
-    setTasks(sortedTasks)
-  },[tasks])
+
+
+
 
   return (
     <TaskContext.Provider value={{
