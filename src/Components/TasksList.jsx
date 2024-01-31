@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {
+  //  useState, useEffect, 
+  useContext } from "react";
 import TaskCard from "./TaskCard";
-import tasks_ from "../data/Tasks";
+// import tasks_ from "../data/Tasks";
 import Form from "./Form";
 import TaskContext from "../context/ListContext";
 
@@ -9,25 +11,27 @@ const Tasks = (props) => {
 
   const {dark} = props
 
-  const { tasks, setTasks } = useContext(TaskContext)
+  const { tasks } = useContext(TaskContext)
 
-  const [editText, setEditText] = useState('')
-  const [idEdit, setIdEdit] = useState('')
-  const [editPriority, setEditPriority] = useState(1)
+  // const [editText, setEditText] = useState('')
+  // const [idEdit, setIdEdit] = useState('')
+  // const [editPriority, setEditPriority] = useState(1)
 
-  useEffect(() => {
-    const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
-    setTasks(sortedTasks)
-  },[tasks])
+  // useEffect(() => {
+  //   const sortedTasks = tasks.sort((a, b) => b.priority - a.priority);
+  //   setTasks(sortedTasks)
+  // },[tasks])
 
-
+/*
   function editTextHandler(id, text, priority) {
     console.log(id)
     setIdEdit(id)
     setEditText(text)
     setEditPriority(priority)
   }
+*/
 
+/*
   function addHandler(newTask) {
     // task is the object with id, priority, text
     console.log('addHandler: ',newTask)
@@ -53,30 +57,31 @@ const Tasks = (props) => {
     }
 
   }
+*/
 
-  // function deleteHandler(id) {
-  //   const new_tasks = tasks.filter(task => id !== task.id)
-  //   setTasks(new_tasks)
-  // }
-  
-  const { test } = useContext(TaskContext)
-
-  console.log('test : ',test)
+/**
+  function deleteHandler(id) {
+    const new_tasks = tasks.filter(task => id !== task.id)
+    setTasks(new_tasks)
+  }
+*/
 
   if (tasks === null || tasks.length === 0)
-    return <h2 className = "text-center m-5 text-2xl">No Tasks To Do</h2>
+    return <h2 className = "text-center m-5 text-2xl text-pink-400">No Tasks To Do</h2>
 
 
   return (
     <div className="flex-row">
 
-      <Form addHandler={addHandler} dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/>
+      {/* <Form addHandler={addHandler} dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/> */}
+      {/* <Form dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/> */}
+      <Form dark={dark} />
 
       <div className="flex justify-center item-center m-4">
       <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
         {tasks.map(task => (
           // <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
-          <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} editPriority={editPriority} editText={editText}/>
+          <TaskCard key={task.id} {...task} />
         ))}
       </div>
     </div>

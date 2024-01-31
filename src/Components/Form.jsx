@@ -1,19 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import TaskContext from '../context/ListContext';
 
 const Form = (props) => {
 
-  const { addHandler, dark, idEdit, editText, editPriority } = props;
+  const { 
+    // addHandler, 
+     dark,
+    //  idEdit,
+    //  editText, 
+    //  editPriority 
+    } = props;
+
+  const { 
+    addHandler,
+    idEdit,
+    editPriority,
+    editText 
+  } = useContext(TaskContext)
 
   const [text, setText] = useState('');
   const [priority, setPriority] = useState(1);
 
   useEffect(() => {
+    console.log('useEffect-form-idEdit : ', idEdit)
     setText(editText)
     setPriority(editPriority)
   },[idEdit, editText, editPriority])
 
 
-  console.log('form : ', idEdit, editText, editPriority)
+  console.log('form-edit : ', idEdit, editText, editPriority)
 
 
   function textChange(e) {
@@ -30,6 +45,7 @@ const Form = (props) => {
   function submitHandler(e) {
     e.preventDefault()
 
+    console.log('submitHandler-idEdit : ', idEdit)
     const id = idEdit ? idEdit : Math.random() * 1000000000000000 + 4
 
     const newTask = {
