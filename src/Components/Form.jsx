@@ -14,7 +14,7 @@ const Form = (props) => {
   const { 
     addHandler,
     idEdit,
-    editPriority,
+    editPriority, 
     editText 
   } = useContext(TaskContext)
 

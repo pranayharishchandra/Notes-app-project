@@ -28,7 +28,7 @@ const TaskCard = (props) => {
         <div className='bg-pink-300 m-1 px-7 py-1 rounded-md flex justify-center items-center'>
           {text}
         </div>
-
+ 
       </div>
 
       <div className='flex'>

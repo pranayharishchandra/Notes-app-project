@@ -11,7 +11,7 @@ export const TaskProvider = ({children}) => {
 
   function deleteHandler(id) {
     const new_tasks = tasks.filter(task => id !== task.id)
-    setTasks(new_tasks)
+    setTasks(new_tasks) 
   }
 
   const [editText, setEditText] = useState('')

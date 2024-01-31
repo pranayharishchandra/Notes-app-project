@@ -64,7 +64,7 @@ const Tasks = (props) => {
     const new_tasks = tasks.filter(task => id !== task.id)
     setTasks(new_tasks)
   }
-*/
+*/ 
 
   if (tasks === null || tasks.length === 0)
     return <h2 className = "text-center m-5 text-2xl text-pink-400">No Tasks To Do</h2>
