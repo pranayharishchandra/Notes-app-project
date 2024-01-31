@@ -12,7 +12,7 @@ const Tasks = (props) => {
 
   const { dark } = props
 
-  const { tasks } = useContext(TaskContext)
+  const { tasks, filterText } = useContext(TaskContext)
 
   // const [editText, setEditText] = useState('')
   // const [idEdit, setIdEdit] = useState('')
@@ -81,14 +81,25 @@ const Tasks = (props) => {
 
       {(tasks?.length === 0) ?
         <h2 className="text-center m-5 text-2xl text-pink-400">No Tasks To Do</h2> :
-        <div className="flex justify-center item-center m-4">
-          <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
-            {tasks.map(task => (
-              // <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
-              <TaskCard key={task.id} {...task} />
-            ))}
+
+
+
+          <div className="flex justify-center item-center m-4">
+            <div className="flex-row justify-center items-center w-[80vw] rounded-lg">
+              {
+                // const filteredArray = array.filter(element => element.includes(searchString));
+
+
+                tasks.map(task => (
+                  // <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
+                  (task.text).includes(filterText) ?
+                    <TaskCard key={task.id} {...task} /> : null
+                ))}
+            </div>
           </div>
-        </div>}
+
+
+          }
     </div>
   );
 };

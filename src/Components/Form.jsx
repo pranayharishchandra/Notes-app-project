@@ -15,7 +15,9 @@ const Form = (props) => {
     addHandler,
     idEdit,
     editPriority, 
-    editText 
+    editText,
+    filterText,
+    setFilterText
   } = useContext(TaskContext)
 
   const [text, setText] = useState('');
@@ -41,6 +43,10 @@ const Form = (props) => {
     setPriority(e.target.value)
   }
 
+  function filterTextChangeHandler(e) {
+    console.log('filter text : ',e.target.value)
+    setFilterText(e.target.value)
+  }
 
   function submitHandler(e) {
     e.preventDefault()
@@ -61,8 +67,20 @@ const Form = (props) => {
 
   return (
     <form onSubmit={submitHandler} className='m-4 '>
+
       <h1 className={'text-xl ' + (dark && 'text-white flex-wrap')}>Add Task</h1>
       <div className='flex justify-evenly align-baseline flex-wrap'>
+
+      <div className='flex align-baseline'>
+          <h2 className={'m-2 ' + (dark && 'text-white')}>Filter:</h2>
+          <input
+            type="text"
+            placeholder="Filter..."
+            value={filterText}
+            onChange={filterTextChangeHandler}
+            className='my-auto mx-4 w-auto rounded-md p-1'
+          />
+        </div>
 
         <div className='flex align-baseline'>
           <h2 className={'m-2 ' + (dark && 'text-white')}>Priority:</h2>
@@ -74,6 +92,7 @@ const Form = (props) => {
             className='my-auto mx-4 w-auto rounded-md p-1'
           />
         </div>
+
         <div className='flex align-baseline justify-start'>
           <h2 className={'m-2 ' + (dark && 'text-white')}>Task:</h2>
           <input
@@ -89,6 +108,7 @@ const Form = (props) => {
           > Add
           </button>}
         </div>
+
       </div>
     </form>
   )

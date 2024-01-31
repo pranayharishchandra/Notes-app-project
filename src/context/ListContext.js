@@ -67,6 +67,7 @@ export const TaskProvider = ({children}) => {
     console.log('editTextHandler-id, IdEdit: ', idEdit, text, priority)
   }
 
+  const [filterText, setFilterText] = useState('')
 
 
 
@@ -80,6 +81,7 @@ export const TaskProvider = ({children}) => {
       idEdit, setIdEdit,
       editText, setEditText,
       editPriority, setEditPriority,
+      filterText, setFilterText,
     }}>
       {children}
     </TaskContext.Provider>
