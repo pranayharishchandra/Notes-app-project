@@ -69,7 +69,7 @@ const Form = (props) => {
   return (
     <form onSubmit={submitHandler} className='m-4 '>
 
-      <h1 className={'text-xl ' + (dark && 'text-white flex-wrap')}>Add Task</h1>
+      {/* <h1 className={'text-xl ' + (dark && 'text-white flex-wrap')}>Add Task</h1> */}
       <div className='flex justify-evenly align-baseline flex-wrap'>
 
       <div className='flex align-baseline'>
@@ -84,6 +84,7 @@ const Form = (props) => {
         </div>
 
         <div className='flex align-baseline'>
+          <h1 className={'text-xl m-2 ' + (dark && 'text-white')}>ADD TASKS:</h1>
           <h2 className={'m-2 ' + (dark && 'text-white')}>Priority:</h2>
           <input
             type="number"
