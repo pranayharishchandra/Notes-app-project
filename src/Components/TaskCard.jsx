@@ -46,7 +46,7 @@ const TaskCard = (props) => {
       desc : editedText,
     }
     console.log(newTask)
-    setIdEdit(id)
+    // setIdEdit(id)
     addHandler(newTask, true)
   };
 
