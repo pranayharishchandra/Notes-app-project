@@ -49,7 +49,7 @@ const Form = (props) => {
     const newTask = {
       id,
       text,
-      priority
+      priority,
     }
 
     addHandler(newTask)

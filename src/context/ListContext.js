@@ -1,4 +1,4 @@
-import tasks_ from "../data/Tasks";
+// import tasks_ from "../data/Tasks";
 import { useState, useEffect, createContext } from "react";
 
 const TaskContext = createContext()
@@ -38,10 +38,10 @@ export const TaskProvider = ({ children }) => {
   const [idEdit, setIdEdit] = useState('')
   const [editPriority, setEditPriority] = useState(1)
 
-  function addHandler(newTask) {
+  function addHandler(newTask, desc) {
     // task is the object with id, priority, text
     // adding new element
-    if (idEdit === '' || idEdit === 0 || !idEdit) {
+    if (!idEdit) {
       const temp = [...tasks, newTask]
       const sortedTasks = temp.sort((a, b) => b.priority - a.priority);
       setTasks(sortedTasks)
@@ -63,9 +63,22 @@ export const TaskProvider = ({ children }) => {
 
       localStorage.setItem('tasks', JSON.stringify(sortedTasks));
     }
+
+    // to only update the desc
+    if (desc) {
+      const temp = tasks.map(task => {
+        if (task.id === newTask.id) return newTask
+        return task
+      })
+
+      const sortedTasks = temp
+      setTasks(sortedTasks)
+
+      localStorage.setItem('tasks', JSON.stringify(sortedTasks));
+    }
   }
 
-
+  // to set the text, priotity of selected task in the form
   function editTextHandler(id, text, priority) {
     setIdEdit(id)
     setEditText(text)
@@ -91,11 +104,6 @@ export const TaskProvider = ({ children }) => {
 
   // CROUSEL: one at a time ================================================
   const [readMore, setReadMore] = useState(null)
-
-
-  function readMoreHandler(id) {
-    
-  }
 
 
   return (
