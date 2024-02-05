@@ -19,7 +19,6 @@ const TaskCard = (props) => {
     readMore,
     setReadMore,
     addHandler,
-    setIdEdit,
   } = useContext(TaskContext);
 
   const expand = id === readMore;
