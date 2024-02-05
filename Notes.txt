@@ -43,7 +43,31 @@ const [text, setText] = useState(idEdit ? idEdit : '');
 =================================================================================
 TaskProvider only to enclose the App.js child compnents
 TaskContext to create and export default and useContext(TaskContext)
- 
+=================================================================================
+  //  DON'T MAKE "useState" UNNECESSARY
+  following is wokring
+  // const [expand, setExpand] = useState(false)
+
+  const expand = id === readMore
+
+  function expandHandler() {
+    setReadMore(expand ? null : id)
+    // setExpand(readMore === id ? true : false)
+  }
+--------------------------------------------------------------------------------
+  // following is not -- sometimes -- i have to click 3 times on + button to make is expand and once it expands it's wokring fine, may be it's becuase react state management,
+  // CONCLUSION : USE "useState" ONLY WHEN NECESSARY
+    const [expand, setExpand] = useState(readMore === id)
+
+  // const expand = id === readMore
+
+  function expandHandler() {
+    setReadMore(readMore ? null : id)
+    setExpand(readMore === id)
+  }
+=================================================================================
+
+
 
 
 

@@ -9,7 +9,8 @@ const FormScreen = () => {
   const background = dark ? 'bg-blue-950' : 'bg-blue-300'
   return (
     <div>
-      <div className={"h-screen " + background}>
+      {/* negative margin to fix bug - short blue screen  */}
+      <div className={"min-h-screen mb-[-16px] " + background}>
         <Header />
         <Tasks />
       </div>

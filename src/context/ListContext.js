@@ -75,7 +75,7 @@ export const TaskProvider = ({ children }) => {
   const [filterText, setFilterText] = useState('')
 
 
-  // pagination ======================================================
+  // PAGINATION ======================================================
 
   const [currPage, setCurrPage]   = useState(1)
   const itemsInAPage = 5
@@ -88,6 +88,15 @@ export const TaskProvider = ({ children }) => {
   
   // const [currTasks, setCurrTasks] = useState(tasks.slice(startIdx, endIdx))
   const currTasks = tasks.slice(startIdx, endIdx)
+
+  // CROUSEL: one at a time ================================================
+  const [readMore, setReadMore] = useState(null)
+
+
+  function readMoreHandler(id) {
+    
+  }
+
 
   return (
     <TaskContext.Provider value={{
@@ -105,6 +114,8 @@ export const TaskProvider = ({ children }) => {
       currPage, setCurrPage,
       totalPages,
       currTasks,
+
+      readMore, setReadMore
 
 
     }}>
