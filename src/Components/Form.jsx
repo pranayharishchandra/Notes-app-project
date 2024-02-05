@@ -25,34 +25,25 @@ const Form = (props) => {
   const [priority, setPriority] = useState(1);
 
   useEffect(() => {
-    console.log('useEffect-form-idEdit : ', idEdit)
     setText(editText)
     setPriority(editPriority)
   },[idEdit, editText, editPriority])
 
 
-  console.log('form-edit : ', idEdit, editText, editPriority)
-
-
   function textChange(e) {
-    console.log(e.target.value)
     setText(e.target.value)
   }
 
   function priorityChange(e) {
-    console.log(e.target.value)
     setPriority(e.target.value)
   }
 
   function filterTextChangeHandler(e) {
-    console.log('filter text : ',e.target.value)
     setFilterText(e.target.value)
   }
 
   function submitHandler(e) {
     e.preventDefault()
-
-    console.log('submitHandler-idEdit : ', idEdit)
     const id = idEdit ? idEdit : Math.random() * 1000000000000000 + 4
 
     const newTask = {
@@ -107,7 +98,7 @@ const Form = (props) => {
           {text?.length !== 0 && <button
             type='submit'
             className={'bg-pink-600 px-2 rounded-lg h-12 w-auto ' + (text?.length === 0 && 'hidden')}
-          > Add
+          > {idEdit?'Update':'Add'}
           </button>}
         </div>
 

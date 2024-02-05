@@ -6,6 +6,7 @@ import TaskCard from "./TaskCard";
 // import tasks_ from "../data/Tasks";
 import Form from "./Form";
 import TaskContext from "../context/ListContext";
+import Pagination from "./Pagination";
 
 
 // const Tasks = (props) => {
@@ -13,7 +14,7 @@ const Tasks = () => {
 
   // const { dark } = props
 
-  const { tasks, filterText } = useContext(TaskContext)
+  const { tasks, filterText, currTasks } = useContext(TaskContext)
 
   // const [editText, setEditText] = useState('')
   // const [idEdit, setIdEdit] = useState('')
@@ -78,8 +79,10 @@ const Tasks = () => {
       {/* <Form addHandler={addHandler} dark={dark} idEdit={idEdit} editPriority={editPriority} editText={editText}/> */}
       <Form />
 
+      { tasks.length && <Pagination/>}
 
-      {(tasks?.length === 0) ?
+
+      {(currTasks?.length === 0) ?
         <h2 className="text-center m-5 text-2xl text-pink-400">No Tasks To Do</h2> :
 
           <div className="flex justify-center item-center m-4">
@@ -87,10 +90,10 @@ const Tasks = () => {
               {
                 // const filteredArray = array.filter(element => element.includes(searchString));
 
-                tasks.map(task => (
+                currTasks.map(task => (
                   // <TaskCard key={task.id} {...task} editTextHandler={editTextHandler} deleteHandler={deleteHandler} editPriority={editPriority} editText={editText}/>
-                  (task.text).includes(filterText) ?
-                    <TaskCard key={task.id} {...task} /> : null
+                  (task.text).includes(filterText) &&
+                    <TaskCard key={task.id} {...task} /> 
                 ))}
             </div>
           </div>

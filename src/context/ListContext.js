@@ -1,37 +1,37 @@
 import tasks_ from "../data/Tasks";
-import { useState, useEffect, createContext} from "react";
+import { useState, useEffect, createContext } from "react";
 
 const TaskContext = createContext()
 
 // you may make a seperate jsx component of TaskProvider function
-export const TaskProvider = ({children}) => {
+export const TaskProvider = ({ children }) => {
 
-    // Function to fetch tasks from local storage
-    function fetchTasks() {
-      const storedTasks = localStorage.getItem('tasks');
-      if (storedTasks) {
-        setTasks(JSON.parse(storedTasks));
-      }
+  // Function to fetch tasks from local storage
+  function fetchTasks() {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
     }
+  }
 
-    const [dark, setDark] = useState(true)
-    
-    function darkMode() {
-      setDark((prev) => !prev)
-    }
-  
-  
-    // useEffect to fetch tasks when the component mounts
-    useEffect(() => {
-      fetchTasks();
-    }, []);
+  const [dark, setDark] = useState(true)
 
-  const [tasks, setTasks] = useState(tasks_)
+  function darkMode() {
+    setDark((prev) => !prev)
+  }
+
+
+  // useEffect to fetch tasks when the component mounts
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const [tasks, setTasks] = useState([])
 
   function deleteHandler(id) {
     const newTasks = tasks.filter(task => id !== task.id);
     setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(newTasks)); 
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
 
   const [editText, setEditText] = useState('')
@@ -40,7 +40,6 @@ export const TaskProvider = ({children}) => {
 
   function addHandler(newTask) {
     // task is the object with id, priority, text
-    console.log('addHandler: ',newTask)
     // adding new element
     if (idEdit === '' || idEdit === 0 || !idEdit) {
       const temp = [...tasks, newTask]
@@ -50,10 +49,10 @@ export const TaskProvider = ({children}) => {
     }
     // update
     else {
-      const temp = tasks.map( task => {
+      const temp = tasks.map(task => {
         if (task.id === newTask.id) return newTask
         return task
-      } )
+      })
 
       const sortedTasks = temp.sort((a, b) => b.priority - a.priority);
       setTasks(sortedTasks)
@@ -61,8 +60,9 @@ export const TaskProvider = ({children}) => {
       setIdEdit('')
       setEditText('')
       setEditPriority(1)
+
       localStorage.setItem('tasks', JSON.stringify(sortedTasks));
-    } 
+    }
   }
 
 
@@ -70,13 +70,24 @@ export const TaskProvider = ({children}) => {
     setIdEdit(id)
     setEditText(text)
     setEditPriority(priority)
-    console.log('editTextHandler-id, IdEdit: ', idEdit, text, priority)
   }
 
   const [filterText, setFilterText] = useState('')
 
 
+  // pagination ======================================================
 
+  const [currPage, setCurrPage]   = useState(1)
+  const itemsInAPage = 5
+  const totalItems   = tasks.length
+  const totalPages   = Math.ceil(totalItems / itemsInAPage)
+  // curr page staring and end idx
+  
+  const endIdx   = currPage * itemsInAPage
+  const startIdx = (currPage-1) * itemsInAPage
+  
+  // const [currTasks, setCurrTasks] = useState(tasks.slice(startIdx, endIdx))
+  const currTasks = tasks.slice(startIdx, endIdx)
 
   return (
     <TaskContext.Provider value={{
@@ -89,7 +100,13 @@ export const TaskProvider = ({children}) => {
       editPriority, setEditPriority,
       filterText, setFilterText,
       dark, setDark,
-      darkMode
+      darkMode,
+
+      currPage, setCurrPage,
+      totalPages,
+      currTasks,
+
+
     }}>
       {children}
     </TaskContext.Provider>
